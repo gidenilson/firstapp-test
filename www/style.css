@@ -1,0 +1,26 @@
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/KFOmCnqEu92Fr1Mu7GxKOzY.woff2)
+}
+
+html{
+  font-family: "Roboto";
+}
+#verse-place{
+  font-size: 1.5em;
+
+}
+.btn-persona{
+  display: inline;
+}
+
+.btn-book, .btn-chapter, .btn-verse {
+  margin: 10px;
+}
+
+.persona-letter{
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 1.2em;
+}
+

@@ -1,0 +1,43 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="vue-resource.min.js"></script>
+</head>
+
+<body>
+
+<main id="app">
+
+<h1>{{message}}</h1>
+
+<button v-on:click="refreshMessage">Carregar</button>
+
+</main>
+
+<script>
+vm = new Vue({
+  el: '#app',
+  data: {
+    message: 'Mensagem'
+  },
+  methods: {
+    refreshMessage(resource) {
+
+    }
+  },
+   created:function(){
+     this.$http.get('/data.json').then( function(res) {
+       this.message = res.body.neme
+     })
+     console.log('beforeMount')
+   }
+})
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>Mobile</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="vue-resource.min.js"></script>
+
+</head>
+
+<body>
+  <main id="app">
+
+    <!-- Start of first page -->
+    <div data-role="page" id="page-1">
+
+
+      <!-- panel books-->
+      <div data-role="panel" id="book">
+        <h3>Livros</h3>
+        <button class="ui-btn ui-btn-inline btn-book" v-on:click="getValue({book}, 'b')"  data-rel="close" v-for="book in books">{{ book.abb }}</button>
+      </div><!-- /panel -->
+
+      <!-- panel chapters-->
+      <div data-role="panel" id="chapter">
+        <h3>Capítulos</h3>
+
+        <button class="ui-btn ui-btn-inline btn-chapter" v-on:click="getValue({index}, 'c')"  data-rel="close" v-for="( chapter, index) in chapters">{{ index + 1 }}</button>
+
+      </div><!-- /panel -->
+
+      <!-- panel verses -->
+      <div data-role="panel" id="verse">
+        <h3>Versículos</h3>
+        <button class="ui-btn ui-btn-inline btn-verse" v-on:click="getValue({v}, 'v')"  data-rel="close" v-for="v in  getVerses()">{{ v }}</button>
+      </div><!-- /panel -->
+
+      <!-- panel personages -->
+      <div data-role="panel" id="persona">
+        <div data-role="collapsible" v-for="(letter,i) in letters" :key="i">
+          <h4>{{letter.letter.toUpperCase()}}</h4>
+          <div class="botoes-place">
+            <button class="ui-btn ui-btn-inline" v-for="persona in letter.personas" v-on:click="getValue({persona}, 'p')">{{ persona.name }}</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- header -->
+      <div data-role="header">
+        <h1><img src="img/bible.png"></h1>
+      </div><!-- /header -->
+
+      <div role="main" class="ui-content">
+        <!-- verse text -->
+        <section id="verse-place" class="ui-body">
+          {{ref.v.t}}
+        </section>
+
+        <!-- reference buttons -->
+        <a class="ui-btn ui-btn-inline" href="#book">{{ ref.b.abb}}</a>
+        <a class="ui-btn ui-btn-inline"  href="#chapter">{{ref.c}}</a>
+        <a class="ui-btn ui-btn-inline"href="#verse">{{ref.v.v}}</a>
+      </div>
+
+      <!-- personage buttons -->
+      <div role="main" class="ui-content">
+        <a class="ui-btn ui-btn-inline" href="#persona">{{ ref.p.name}}</a>
+      </div>
+
+      <!-- question text -->
+      <div role="main" class="ui-content">
+        <label>Pergunta</label>
+        <textarea v-model="ref.t"></textarea>
+        <div>
+          <button v-on:click="saveQuestion()" class="ui-btn ui-corner-all">Salvar</button>
+        </div>
+      </div>
+
+      <div data-role="footer" data-position="fixed">
+        <h4></h4>
+      </div><!-- /footer -->
+    </div><!-- /page -->
+
+  </main>
+
+  <script src="personages.js"></script>
+  <script src="bible.js"></script>
+  <script src="mobile.js"></script>
+
+</body>
+
+</html>
